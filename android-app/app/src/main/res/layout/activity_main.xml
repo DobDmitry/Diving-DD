@@ -1,58 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/surface_light"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:background="@color/surface_light">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@drawable/header_background"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="24dp">
 
-        <RelativeLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Прыжки в воду"
+            android:textColor="@color/brand_white"
+            android:textSize="24sp"
+            android:fontFamily="@font/stapel_bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="Калькулятор коэффициента трудности"
+            android:textColor="#B3C2E6"
+            android:textSize="13sp"
+            android:fontFamily="@font/stapel_medium" />
+
+    </LinearLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="4dp"
+        app:strokeWidth="0dp">
+
+        <TextView
+            android:id="@+id/resultText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/header_background"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp"
-            android:paddingTop="32dp"
-            android:paddingBottom="28dp">
+            android:paddingTop="20dp"
+            android:paddingBottom="20dp"
+            android:text="Введите номер, положение и высоту"
+            android:textColor="@color/text_secondary"
+            android:fontFamily="@font/stapel_bold"
+            android:textSize="20sp"
+            android:gravity="center" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:src="@drawable/ic_brand_slashes"
-                android:contentDescription="@null" />
+    </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/titleText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Прыжки в воду"
-                android:textColor="@color/brand_white"
-                android:textSize="26sp"
-                android:fontFamily="@font/stapel_bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/titleText"
-                android:layout_marginTop="4dp"
-                android:text="Калькулятор коэффициента трудности"
-                android:textColor="#B3C2E6"
-                android:textSize="14sp"
-                android:fontFamily="@font/stapel_medium" />
-
-        </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="16dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -60,21 +77,22 @@
                 app:cardCornerRadius="18dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Номер прыжка"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
                         android:textSize="13sp"
+                        android:gravity="center"
                         android:layout_marginBottom="8dp" />
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -92,7 +110,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="number"
-                            android:hint="Например, 403"
+                            android:hint="например, 403"
                             android:textColor="@color/brand_navy"
                             android:textSize="28sp"
                             android:fontFamily="@font/stapel_bold"
@@ -110,67 +128,72 @@
                 app:cardCornerRadius="18dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Положение"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
                         android:textSize="13sp"
+                        android:gravity="center"
                         android:layout_marginBottom="10dp" />
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/positionChipGroup"
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/positionToggle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:singleSelection="true"
-                        app:chipSpacingHorizontal="10dp">
+                        app:selectionRequired="false">
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipPosA"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPosA"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="A"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipPosB"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPosB"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="B"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipPosC"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPosC"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="C"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipPosD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPosD"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="D"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="17sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                    </com.google.android.material.chip.ChipGroup>
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
 
                 </LinearLayout>
 
@@ -182,114 +205,88 @@
                 app:cardCornerRadius="18dp"
                 app:cardElevation="2dp"
                 app:strokeWidth="0dp"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="12dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="18dp">
+                    android:padding="16dp">
 
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Высота, м"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
                         android:textSize="13sp"
+                        android:gravity="center"
                         android:layout_marginBottom="10dp" />
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/heightChipGroup"
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/heightToggle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:singleSelection="true"
-                        app:chipSpacingHorizontal="8dp">
+                        app:selectionRequired="false">
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipHeight1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnH1"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="1"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipHeight3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnH3"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="3"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipHeight5"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnH5"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="5"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipHeight75"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnH75"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="7.5"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                        <com.google.android.material.chip.Chip
-                            style="@style/Widget.MaterialComponents.Chip.Choice"
-                            android:id="@+id/chipHeight10"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnH10"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="0dp"
+                            android:layout_height="48dp"
+                            android:layout_weight="1"
                             android:text="10"
-                            android:fontFamily="@font/stapel_medium"
-                            android:checkable="true" />
+                            android:textSize="16sp"
+                            android:fontFamily="@font/stapel_bold" />
 
-                    </com.google.android.material.chip.ChipGroup>
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
 
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/calcButton"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:text="Рассчитать"
-                android:textColor="@color/brand_navy"
-                android:fontFamily="@font/stapel_bold"
-                android:textSize="16sp"
-                app:cornerRadius="16dp"
-                app:backgroundTint="@color/diving_accent" />
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                app:cardCornerRadius="18dp"
-                app:cardElevation="3dp"
-                app:strokeWidth="0dp">
-
-                <TextView
-                    android:id="@+id/resultText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="24dp"
-                    android:text="Здесь появится результат"
-                    android:textColor="@color/text_secondary"
-                    android:fontFamily="@font/stapel_bold"
-                    android:textSize="20sp"
-                    android:gravity="center" />
-
-            </com.google.android.material.card.MaterialCardView>
-
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
-</ScrollView>
+</LinearLayout>

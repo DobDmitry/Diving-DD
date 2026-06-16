@@ -1,92 +1,127 @@
 package com.divingdd.app
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
+import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.textfield.TextInputEditText
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var codeInput: TextInputEditText
+    private lateinit var positionToggle: MaterialButtonToggleGroup
+    private lateinit var heightToggle: MaterialButtonToggleGroup
+    private lateinit var resultText: TextView
+
+    private val heightById = mapOf(
+        R.id.btnH1 to "1",
+        R.id.btnH3 to "3",
+        R.id.btnH5 to "5",
+        R.id.btnH75 to "7.5",
+        R.id.btnH10 to "10",
+    )
+
+    private val positionById = mapOf(
+        R.id.btnPosA to "A",
+        R.id.btnPosB to "B",
+        R.id.btnPosC to "C",
+        R.id.btnPosD to "D",
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val codeInput = findViewById<TextInputEditText>(R.id.codeInput)
-        val positionChipGroup = findViewById<ChipGroup>(R.id.positionChipGroup)
-        val heightChipGroup = findViewById<ChipGroup>(R.id.heightChipGroup)
-        val resultText = findViewById<TextView>(R.id.resultText)
-        val calcButton = findViewById<MaterialButton>(R.id.calcButton)
+        codeInput = findViewById(R.id.codeInput)
+        positionToggle = findViewById(R.id.positionToggle)
+        heightToggle = findViewById(R.id.heightToggle)
+        resultText = findViewById(R.id.resultText)
 
-        val heightByChipId = mapOf(
-            R.id.chipHeight1 to "1",
-            R.id.chipHeight3 to "3",
-            R.id.chipHeight5 to "5",
-            R.id.chipHeight75 to "7.5",
-            R.id.chipHeight10 to "10",
-        )
+        codeInput.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) = recalculate()
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
-        calcButton.setOnClickListener {
-            val code = codeInput.text.toString().trim()
-
-            if (code.isEmpty() || !code.all { it.isDigit() }) {
-                showResult(resultText, "Введите код прыжка (например 403).", isError = true)
-                return@setOnClickListener
-            }
-
-            val positionChipId = positionChipGroup.checkedChipId
-            if (positionChipId == -1) {
-                showResult(resultText, "Выберите положение прыжка.", isError = true)
-                return@setOnClickListener
-            }
-
-            val heightChipId = heightChipGroup.checkedChipId
-            if (heightChipId == -1) {
-                showResult(resultText, "Выберите высоту.", isError = true)
-                return@setOnClickListener
-            }
-
-            val position = findViewById<Chip>(positionChipId).text.toString()
-            val height = heightByChipId[heightChipId]!!
-
-            val positionsMap = DiveTable.table[code]
-            if (positionsMap == null) {
-                showResult(resultText, "Прыжок $code не найден в таблице КТ.", isError = true)
-                return@setOnClickListener
-            }
-
-            val heightsMap = positionsMap[position]
-            if (heightsMap == null) {
-                val available = positionsMap.keys.sorted().joinToString(", ")
-                showResult(
-                    resultText,
-                    "Прыжок $code: положение $position не предусмотрено.\nДоступные: $available",
-                    isError = true,
-                )
-                return@setOnClickListener
-            }
-
-            val dd = heightsMap[height]
-            if (dd == null) {
-                val available = heightsMap.keys.sortedBy { it.toDouble() }.joinToString(", ")
-                showResult(
-                    resultText,
-                    "Прыжок $code$position: высота $height м не предусмотрена.\nДоступные: $available м",
-                    isError = true,
-                )
-                return@setOnClickListener
-            }
-
-            showResult(resultText, "КТ = $dd", isError = false)
-        }
+        positionToggle.addOnButtonCheckedListener { _, _, _ -> recalculate() }
+        heightToggle.addOnButtonCheckedListener { _, _, _ -> recalculate() }
     }
 
-    private fun showResult(resultText: TextView, text: String, isError: Boolean) {
+    private fun recalculate() {
+        val code = codeInput.text.toString().trim()
+        val positionId = positionToggle.checkedButtonId
+        val heightId = heightToggle.checkedButtonId
+
+        if (code.isEmpty() && positionId == -1 && heightId == -1) {
+            showPlaceholder()
+            return
+        }
+
+        if (code.isEmpty() || !code.all { it.isDigit() }) {
+            showHint("Введите корректный номер прыжка")
+            return
+        }
+
+        if (positionId == -1) {
+            showHint("Выберите положение")
+            return
+        }
+
+        if (heightId == -1) {
+            showHint("Выберите высоту")
+            return
+        }
+
+        val position = positionById[positionId]!!
+        val height = heightById[heightId]!!
+
+        val positionsMap = DiveTable.table[code]
+        if (positionsMap == null) {
+            showError("Прыжок $code не найден в таблице КТ")
+            return
+        }
+
+        val heightsMap = positionsMap[position]
+        if (heightsMap == null) {
+            val available = positionsMap.keys.sorted().joinToString(", ")
+            showError("Прыжок $code: положение $position не предусмотрено\nДоступные: $available")
+            return
+        }
+
+        val dd = heightsMap[height]
+        if (dd == null) {
+            val available = heightsMap.keys.sortedBy { it.toDouble() }.joinToString(", ")
+            showError("Прыжок $code$position: высота $height м не предусмотрена\nДоступные: $available м")
+            return
+        }
+
+        showResult("КТ = $dd")
+    }
+
+    private fun showPlaceholder() {
+        resultText.text = "Введите номер, положение и высоту"
+        resultText.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
+        resultText.textSize = 16f
+    }
+
+    private fun showHint(message: String) {
+        resultText.text = message
+        resultText.setTextColor(ContextCompat.getColor(this, R.color.text_secondary))
+        resultText.textSize = 16f
+    }
+
+    private fun showError(message: String) {
+        resultText.text = message
+        resultText.setTextColor(ContextCompat.getColor(this, android.R.color.holo_red_dark))
+        resultText.textSize = 15f
+    }
+
+    private fun showResult(text: String) {
         resultText.text = text
-        val colorRes = if (isError) android.R.color.holo_red_dark else R.color.diving_accent
-        resultText.setTextColor(ContextCompat.getColor(this, colorRes))
+        resultText.setTextColor(ContextCompat.getColor(this, R.color.diving_accent))
+        resultText.textSize = 28f
     }
 }
