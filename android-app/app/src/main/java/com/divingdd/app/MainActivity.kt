@@ -6,6 +6,7 @@ import android.text.TextWatcher
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.textfield.TextInputEditText
 
@@ -29,6 +30,21 @@ class MainActivity : AppCompatActivity() {
         R.id.btnPosB to "B",
         R.id.btnPosC to "C",
         R.id.btnPosD to "D",
+    )
+
+    private val positionBtnIds = mapOf(
+        "A" to R.id.btnPosA,
+        "B" to R.id.btnPosB,
+        "C" to R.id.btnPosC,
+        "D" to R.id.btnPosD,
+    )
+
+    private val heightBtnIds = mapOf(
+        "1" to R.id.btnH1,
+        "3" to R.id.btnH3,
+        "5" to R.id.btnH5,
+        "7.5" to R.id.btnH75,
+        "10" to R.id.btnH10,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,49 +72,80 @@ class MainActivity : AppCompatActivity() {
         val heightId = heightToggle.checkedButtonId
 
         if (code.isEmpty() && positionId == -1 && heightId == -1) {
+            enableAllButtons()
             showPlaceholder()
             return
         }
 
         if (code.isEmpty() || !code.all { it.isDigit() }) {
+            enableAllButtons()
             showHint("Введите корректный номер прыжка")
             return
         }
 
-        if (positionId == -1) {
-            showHint("Выберите положение")
-            return
-        }
-
-        if (heightId == -1) {
-            showHint("Выберите высоту")
-            return
-        }
-
-        val position = positionById[positionId]!!
-        val height = heightById[heightId]!!
-
         val positionsMap = DiveTable.table[code]
         if (positionsMap == null) {
+            enableAllButtons()
             showError("Прыжок $code не найден в таблице КТ")
             return
         }
 
-        val heightsMap = positionsMap[position]
-        if (heightsMap == null) {
-            val available = positionsMap.keys.sorted().joinToString(", ")
-            showError("Прыжок $code: положение $position не предусмотрено\nДоступные: $available")
+        updateAvailability(positionsMap)
+
+        val checkedPosId = positionToggle.checkedButtonId
+        if (checkedPosId == -1) {
+            showHint("Выберите положение")
             return
         }
 
-        val dd = heightsMap[height]
+        val position = positionById[checkedPosId]!!
+        val checkedHeightId = heightToggle.checkedButtonId
+        if (checkedHeightId == -1) {
+            showHint("Выберите высоту")
+            return
+        }
+
+        val height = heightById[checkedHeightId]!!
+        val dd = positionsMap[position]?.get(height)
         if (dd == null) {
-            val available = heightsMap.keys.sortedBy { it.toDouble() }.joinToString(", ")
-            showError("Прыжок $code$position: высота $height м не предусмотрена\nДоступные: $available м")
+            showHint("Выберите высоту")
             return
         }
 
         showResult("КТ = $dd")
+    }
+
+    private fun updateAvailability(positionsMap: Map<String, Map<String, Float>>) {
+        positionBtnIds.forEach { (pos, btnId) ->
+            val btn = findViewById<MaterialButton>(btnId)
+            val available = positionsMap.containsKey(pos)
+            if (!available && positionToggle.checkedButtonId == btnId) {
+                positionToggle.clearChecked()
+            }
+            btn.isEnabled = available
+        }
+
+        val checkedPosId = positionToggle.checkedButtonId
+        val position = if (checkedPosId != -1) positionById[checkedPosId] else null
+        val heightsMap = if (position != null) positionsMap[position] else null
+
+        heightBtnIds.forEach { (h, btnId) ->
+            val btn = findViewById<MaterialButton>(btnId)
+            val available = heightsMap?.containsKey(h) == true
+            if (!available && heightToggle.checkedButtonId == btnId) {
+                heightToggle.clearChecked()
+            }
+            btn.isEnabled = available
+        }
+    }
+
+    private fun enableAllButtons() {
+        positionBtnIds.values.forEach { btnId ->
+            findViewById<MaterialButton>(btnId).isEnabled = true
+        }
+        heightBtnIds.values.forEach { btnId ->
+            findViewById<MaterialButton>(btnId).isEnabled = true
+        }
     }
 
     private fun showPlaceholder() {

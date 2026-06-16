@@ -16,7 +16,6 @@
         android:paddingBottom="24dp">
 
         <ImageView
-            android:id="@+id/headerDiver"
             android:layout_width="38dp"
             android:layout_height="52dp"
             android:layout_alignParentEnd="true"
@@ -73,8 +72,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fillViewport="false">
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -168,41 +166,49 @@
                             android:id="@+id/btnPosA"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
                             android:text="A"
                             android:textSize="17sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnPosB"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
                             android:text="B"
                             android:textSize="17sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnPosC"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
                             android:text="C"
                             android:textSize="17sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnPosD"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
                             android:text="D"
                             android:textSize="17sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -227,7 +233,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Высота, м"
+                        android:text="Высота"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
                         android:textSize="16sp"
@@ -245,51 +251,76 @@
                             android:id="@+id/btnH1"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="2dp"
+                            android:minWidth="0dp"
                             android:text="1"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:textSize="15sp"
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnH3"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="2dp"
+                            android:minWidth="0dp"
                             android:text="3"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:textSize="15sp"
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnH5"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="2dp"
+                            android:minWidth="0dp"
                             android:text="5"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:textSize="15sp"
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnH75"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="2dp"
+                            android:minWidth="0dp"
                             android:text="7.5"
                             android:textSize="13sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnH10"
                             style="@style/Widget.Material3.Button.OutlinedButton"
                             android:layout_width="0dp"
-                            android:layout_height="48dp"
+                            android:layout_height="52dp"
                             android:layout_weight="1"
+                            android:paddingStart="2dp"
+                            android:paddingEnd="2dp"
+                            android:minWidth="0dp"
                             android:text="10"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/stapel_bold" />
+                            android:textSize="15sp"
+                            android:fontFamily="@font/stapel_bold"
+                            android:textColor="@color/btn_toggle_text"
+                            app:backgroundTint="@color/btn_toggle_bg" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>
 
