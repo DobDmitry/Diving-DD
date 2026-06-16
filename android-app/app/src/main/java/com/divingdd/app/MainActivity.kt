@@ -115,7 +115,7 @@ class MainActivity : AppCompatActivity() {
         showResult("КТ = $dd")
     }
 
-    private fun updateAvailability(positionsMap: Map<String, Map<String, Float>>) {
+    private fun updateAvailability(positionsMap: Map<String, Map<String, Double>>) {
         positionBtnIds.forEach { (pos, btnId) ->
             val btn = findViewById<MaterialButton>(btnId)
             val available = positionsMap.containsKey(pos)
