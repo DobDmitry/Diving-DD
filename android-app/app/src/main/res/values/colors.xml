@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brand_blue">#0F7BFF</color>
+    <color name="brand_navy">#001E62</color>
+    <color name="brand_black">#000000</color>
+    <color name="brand_white">#FFFFFF</color>
+    <color name="diving_accent">#0BCF9B</color>
+
+    <color name="surface_light">#F2F5FA</color>
+    <color name="text_secondary">#6B7686</color>
+</resources>
