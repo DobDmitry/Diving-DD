@@ -6,17 +6,27 @@
     android:orientation="vertical"
     android:background="@color/surface_light">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:background="@drawable/header_background"
         android:paddingStart="24dp"
-        android:paddingEnd="24dp"
+        android:paddingEnd="16dp"
         android:paddingTop="28dp"
         android:paddingBottom="24dp">
 
+        <ImageView
+            android:id="@+id/headerDiver"
+            android:layout_width="38dp"
+            android:layout_height="52dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_diver_header"
+            android:alpha="0.9"
+            android:contentDescription="@null" />
+
         <TextView
+            android:id="@+id/headerTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Прыжки в воду"
@@ -27,13 +37,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/headerTitle"
             android:layout_marginTop="2dp"
             android:text="Калькулятор коэффициента трудности"
             android:textColor="#B3C2E6"
             android:textSize="13sp"
             android:fontFamily="@font/stapel_medium" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -91,7 +102,7 @@
                         android:text="Номер прыжка"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
-                        android:textSize="13sp"
+                        android:textSize="16sp"
                         android:gravity="center"
                         android:layout_marginBottom="8dp" />
 
@@ -142,7 +153,7 @@
                         android:text="Положение"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
-                        android:textSize="13sp"
+                        android:textSize="16sp"
                         android:gravity="center"
                         android:layout_marginBottom="10dp" />
 
@@ -219,7 +230,7 @@
                         android:text="Высота, м"
                         android:textColor="@color/text_secondary"
                         android:fontFamily="@font/stapel_medium"
-                        android:textSize="13sp"
+                        android:textSize="16sp"
                         android:gravity="center"
                         android:layout_marginBottom="10dp" />
 
@@ -237,7 +248,7 @@
                             android:layout_height="48dp"
                             android:layout_weight="1"
                             android:text="1"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/stapel_bold" />
 
                         <com.google.android.material.button.MaterialButton
@@ -247,7 +258,7 @@
                             android:layout_height="48dp"
                             android:layout_weight="1"
                             android:text="3"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/stapel_bold" />
 
                         <com.google.android.material.button.MaterialButton
@@ -257,7 +268,7 @@
                             android:layout_height="48dp"
                             android:layout_weight="1"
                             android:text="5"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/stapel_bold" />
 
                         <com.google.android.material.button.MaterialButton
@@ -267,7 +278,7 @@
                             android:layout_height="48dp"
                             android:layout_weight="1"
                             android:text="7.5"
-                            android:textSize="16sp"
+                            android:textSize="13sp"
                             android:fontFamily="@font/stapel_bold" />
 
                         <com.google.android.material.button.MaterialButton
@@ -277,7 +288,7 @@
                             android:layout_height="48dp"
                             android:layout_weight="1"
                             android:text="10"
-                            android:textSize="16sp"
+                            android:textSize="14sp"
                             android:fontFamily="@font/stapel_bold" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>
