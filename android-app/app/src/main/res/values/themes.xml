@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.DivingDD" parent="Theme.AppCompat.Light.DarkActionBar" />
+</resources>
