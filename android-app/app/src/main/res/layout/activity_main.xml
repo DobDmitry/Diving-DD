@@ -300,7 +300,7 @@
                             android:layout_height="52dp"
                             android:layout_weight="1"
                             android:minWidth="0dp"
-                            android:text="7½"
+                            android:text="7"
                             android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
