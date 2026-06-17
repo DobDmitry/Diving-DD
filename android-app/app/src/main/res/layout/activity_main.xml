@@ -172,6 +172,7 @@
                             android:textSize="17sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -184,6 +185,7 @@
                             android:textSize="17sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -196,6 +198,7 @@
                             android:textSize="17sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -208,6 +211,7 @@
                             android:textSize="17sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>
@@ -253,13 +257,12 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
                             android:minWidth="0dp"
                             android:text="1"
                             android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -268,13 +271,12 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
                             android:minWidth="0dp"
                             android:text="3"
                             android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -283,13 +285,12 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
                             android:minWidth="0dp"
                             android:text="5"
                             android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -298,13 +299,12 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
                             android:minWidth="0dp"
-                            android:text="7.5"
-                            android:textSize="13sp"
+                            android:text="7½"
+                            android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                         <com.google.android.material.button.MaterialButton
@@ -313,13 +313,12 @@
                             android:layout_width="0dp"
                             android:layout_height="52dp"
                             android:layout_weight="1"
-                            android:paddingStart="2dp"
-                            android:paddingEnd="2dp"
                             android:minWidth="0dp"
                             android:text="10"
                             android:textSize="15sp"
                             android:fontFamily="@font/stapel_bold"
                             android:textColor="@color/btn_toggle_text"
+                            app:strokeColor="@color/btn_toggle_stroke"
                             app:backgroundTint="@color/btn_toggle_bg" />
 
                     </com.google.android.material.button.MaterialButtonToggleGroup>

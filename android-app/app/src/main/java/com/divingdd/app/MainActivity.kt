@@ -86,7 +86,12 @@ class MainActivity : AppCompatActivity() {
         val positionsMap = DiveTable.table[code]
         if (positionsMap == null) {
             enableAllButtons()
-            showError("Прыжок $code не найден в таблице КТ")
+            val couldBeValid = DiveTable.table.keys.any { it.startsWith(code) }
+            if (couldBeValid) {
+                showHint("Введите корректный номер прыжка")
+            } else {
+                showError("Прыжок $code не найден в таблице КТ")
+            }
             return
         }
 
